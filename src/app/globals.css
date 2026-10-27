@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-playfair);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* Restaurante Sabores de Delicias palette */
+  --background: #FAF7F2;           /* cream/ivory */
+  --foreground: #3E2C20;           /* dark brown */
+  --card: #FFFFFF;
+  --card-foreground: #3E2C20;
+  --popover: #FFFFFF;
+  --popover-foreground: #3E2C20;
+  --primary: #B8543D;              /* terracotta */
+  --primary-foreground: #FAF7F2;
+  --secondary: #D4A574;            /* warm gold */
+  --secondary-foreground: #3E2C20;
+  --muted: #F1EADD;
+  --muted-foreground: #6B5440;
+  --accent: #7A8C4C;               /* olive */
+  --accent-foreground: #FAF7F2;
+  --destructive: #A8332A;          /* deep terracotta-red */
+  --border: #E8DCC9;
+  --input: #E8DCC9;
+  --ring: #B8543D;
+  --chart-1: #B8543D;
+  --chart-2: #D4A574;
+  --chart-3: #7A8C4C;
+  --chart-4: #A8332A;
+  --chart-5: #3E2C20;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #3E2C20;
+  --sidebar-primary: #B8543D;
+  --sidebar-primary-foreground: #FAF7F2;
+  --sidebar-accent: #F1EADD;
+  --sidebar-accent-foreground: #3E2C20;
+  --sidebar-border: #E8DCC9;
+  --sidebar-ring: #B8543D;
+}
+
+.dark {
+  --background: #2A1F16;
+  --foreground: #FAF7F2;
+  --card: #3E2C20;
+  --card-foreground: #FAF7F2;
+  --popover: #3E2C20;
+  --popover-foreground: #FAF7F2;
+  --primary: #D4A574;
+  --primary-foreground: #2A1F16;
+  --secondary: #7A8C4C;
+  --secondary-foreground: #FAF7F2;
+  --muted: #4A3828;
+  --muted-foreground: #D4C5B0;
+  --accent: #B8543D;
+  --accent-foreground: #FAF7F2;
+  --destructive: #C44B40;
+  --border: #4A3828;
+  --input: #4A3828;
+  --ring: #D4A574;
+  --chart-1: #D4A574;
+  --chart-2: #B8543D;
+  --chart-3: #7A8C4C;
+  --chart-4: #C44B40;
+  --chart-5: #FAF7F2;
+  --sidebar: #3E2C20;
+  --sidebar-foreground: #FAF7F2;
+  --sidebar-primary: #D4A574;
+  --sidebar-primary-foreground: #2A1F16;
+  --sidebar-accent: #4A3828;
+  --sidebar-accent-foreground: #FAF7F2;
+  --sidebar-border: #4A3828;
+  --sidebar-ring: #D4A574;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: var(--font-playfair), Georgia, serif;
+  }
+}
+
+/* Custom scrollbar for long lists */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary);
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Subtle decorative pattern for hero sections */
+.pattern-bg {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(184, 84, 61, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+}

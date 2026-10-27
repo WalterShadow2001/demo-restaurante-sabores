@@ -1,0 +1,42 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Platillo {
+  id          String   @id @default(cuid())
+  nombre      String
+  descripcion String
+  precio      Float
+  categoria   String   // "Entrada", "Plato Fuerte", "Bebida", "Postre"
+  imagen      String   // emoji or base64 placeholder
+  etiquetas   String   // comma-separated: "picante,veggie,recomendado"
+  disponible  Boolean  @default(true)
+  destacado   Boolean  @default(false)
+  creadoEn    DateTime @default(now())
+}
+
+model Pedido {
+  id           String   @id @default(cuid())
+  clienteNombre String
+  clientePhone String
+  items        String   // JSON string of {platilloId, nombre, precio, cantidad}
+  total        Float
+  estado       String   @default("recibido") // recibido, en_preparacion, listo, entregado
+  notas        String?
+  creadoEn     DateTime @default(now())
+}
+
+model Resena {
+  id         String   @id @default(cuid())
+  autor      String
+  calificacion Int    // 1-5
+  comentario String
+  aprobada   Boolean  @default(false)
+  creadoEn   DateTime @default(now())
+}
