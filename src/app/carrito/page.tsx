@@ -63,7 +63,21 @@ export default function CarritoPage() {
     return lines.join("\n");
   }
 
-  async function handleSubmitPedido() {
+  async function handleSubmitPedido(e?: React.MouseEvent<HTMLButtonElement>) {
+    // Ripple effect at click position.
+    if (e) {
+      const btn = e.currentTarget;
+      const ripple = document.createElement("span");
+      ripple.className = "ripple";
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      ripple.style.width = ripple.style.height = `${size}px`;
+      ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+      ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+      btn.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    }
+
     if (items.length === 0) {
       toast.error("Tu carrito está vacío");
       return;
@@ -337,7 +351,7 @@ export default function CarritoPage() {
 
             <Button
               size="lg"
-              className="btn-glow w-full gap-2"
+              className="btn-glow ripple-btn w-full gap-2"
               onClick={handleSubmitPedido}
               disabled={submitting || !mounted}
             >

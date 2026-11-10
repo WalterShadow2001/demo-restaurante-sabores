@@ -6,6 +6,8 @@ import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { MotionDiv } from "@/components/site/motion";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Ubicación | Sabores de Delicias",
   description:
@@ -18,6 +20,15 @@ const TELEFONO_HREF = "+526394728100";
 const MAPS_URL =
   "https://www.google.com/maps?q=Delicias,+Chihuahua,+Mexico&output=embed";
 const MAPS_LINK_URL = "https://www.google.com/maps/search/?api=1&query=Delicias+Chihuahua";
+
+// 0 = Sunday ... 6 = Saturday
+const TODAY = new Date().getDay();
+
+const HORARIOS: { label: string; horas: string; isToday: boolean }[] = [
+  { label: "Lunes a Jueves", horas: "13:00 – 22:00", isToday: TODAY >= 1 && TODAY <= 4 },
+  { label: "Viernes y Sábados", horas: "13:00 – 23:30", isToday: TODAY === 5 || TODAY === 6 },
+  { label: "Domingo", horas: "13:00 – 19:00", isToday: TODAY === 0 },
+];
 
 export default function UbicacionPage() {
   return (
@@ -43,7 +54,7 @@ export default function UbicacionPage() {
           transition={{ duration: 0.5 }}
         >
           <Card className="overflow-hidden p-0">
-            <div className="aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10]">
+            <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10]">
               <iframe
                 src={MAPS_URL}
                 title="Mapa: Sabores de Delicias en Delicias, Chihuahua"
@@ -52,6 +63,13 @@ export default function UbicacionPage() {
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
+              {/* Decorative pulsing marker overlaid on the map */}
+              <div
+                className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-full"
+                aria-hidden="true"
+              >
+                <div className="map-marker-pulse" />
+              </div>
             </div>
           </Card>
         </MotionDiv>
@@ -65,8 +83,13 @@ export default function UbicacionPage() {
         >
           <Card className="p-5">
             <div className="flex items-start gap-3">
-              <div className="grid size-11 place-items-center rounded-full bg-primary/10 text-primary">
+              <div className="relative grid size-11 place-items-center rounded-full bg-primary/10 text-primary">
                 <MapPin className="size-5" />
+                {/* Decorative pulsing marker on the address card */}
+                <span
+                  className="map-marker-pulse absolute -right-1 -top-1 scale-50"
+                  aria-hidden="true"
+                />
               </div>
               <div className="flex-1">
                 <h2 className="font-serif text-lg font-semibold">Dirección</h2>
@@ -90,18 +113,15 @@ export default function UbicacionPage() {
               <div className="flex-1">
                 <h2 className="font-serif text-lg font-semibold">Horario</h2>
                 <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
-                  <li className="flex justify-between gap-3">
-                    <span>Lunes a Jueves</span>
-                    <span>13:00 – 22:00</span>
-                  </li>
-                  <li className="flex justify-between gap-3">
-                    <span>Viernes y Sábados</span>
-                    <span>13:00 – 23:30</span>
-                  </li>
-                  <li className="flex justify-between gap-3">
-                    <span>Domingo</span>
-                    <span>13:00 – 19:00</span>
-                  </li>
+                  {HORARIOS.map((h) => (
+                    <li
+                      key={h.label}
+                      className={`day-card flex justify-between gap-3 py-1.5 ${h.isToday ? "today" : ""}`}
+                    >
+                      <span>{h.label}</span>
+                      <span>{h.horas}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

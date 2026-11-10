@@ -16,9 +16,11 @@ interface DishCardProps {
   platillo: Platillo;
   href?: string;
   index?: number;
+  /** When true, use the 3D tilt-card effect (menu page) instead of card-lift. */
+  tilt?: boolean;
 }
 
-export function DishCard({ platillo, href, index = 0 }: DishCardProps) {
+export function DishCard({ platillo, href, index = 0, tilt = false }: DishCardProps) {
   const add = useCartStore((s) => s.add);
 
   const etiquetas = platillo.etiquetas
@@ -46,7 +48,7 @@ export function DishCard({ platillo, href, index = 0 }: DishCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
     >
-      <Card className="card-lift group relative overflow-hidden border-border/70 bg-card p-0 transition-all hover:border-primary/40 hover:shadow-lg">
+      <Card className={cn("group relative overflow-hidden border-border/70 bg-card p-0 transition-all hover:border-primary/40 hover:shadow-lg", tilt ? "tilt-card" : "card-lift")}>
         <Link href={linkHref} className="block">
           {/* Image area: emoji-based */}
           <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-secondary/30 via-background to-accent/15">

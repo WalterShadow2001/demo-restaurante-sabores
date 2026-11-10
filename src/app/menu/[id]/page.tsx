@@ -62,8 +62,8 @@ export default async function PlatilloDetallePage({
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <Card className="card-lift relative grid aspect-square place-items-center bg-gradient-to-br from-secondary/30 via-background to-accent/15 p-8 text-center">
-            <span className="text-[10rem] sm:text-[12rem]">{platillo.imagen}</span>
+          <Card className="card-lift zoom-frame relative grid aspect-square place-items-center bg-gradient-to-br from-secondary/30 via-background to-accent/15 p-8 text-center">
+            <span className="placeholder text-[10rem] sm:text-[12rem]">{platillo.imagen}</span>
             {platillo.destacado && (
               <Badge className="badge-pulse absolute left-6 top-6 bg-primary text-primary-foreground">
                 Recomendado de la casa

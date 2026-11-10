@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { Fragment } from "react";
 import { useRouter } from "next/navigation";
-import { Star, Send } from "lucide-react";
+import { Send } from "lucide-react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -10,13 +11,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
 
 export function ResenaForm() {
   const router = useRouter();
   const [autor, setAutor] = useState("");
   const [calificacion, setCalificacion] = useState(0);
-  const [hover, setHover] = useState(0);
   const [comentario, setComentario] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -92,28 +91,34 @@ export function ResenaForm() {
 
           <div>
             <Label>Tu calificación *</Label>
-            <div className="mt-1.5 flex items-center gap-1">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button
-                  key={n}
-                  type="button"
-                  onClick={() => setCalificacion(n)}
-                  onMouseEnter={() => setHover(n)}
-                  onMouseLeave={() => setHover(0)}
-                  className="rounded-full p-1 transition-transform hover:scale-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  aria-label={`${n} ${n === 1 ? "estrella" : "estrellas"}`}
-                >
-                  <Star
-                    className={cn(
-                      "size-8 transition-colors",
-                      (hover || calificacion) >= n
-                        ? "fill-secondary text-secondary"
-                        : "fill-muted text-muted-foreground/40"
-                    )}
-                  />
-                </button>
-              ))}
-              <span className="ml-2 text-sm text-muted-foreground">
+            <div className="mt-2 flex items-center gap-3">
+              <div
+                className="star-rating-input"
+                role="radiogroup"
+                aria-label="Calificación de 1 a 5 estrellas"
+              >
+                {[5, 4, 3, 2, 1].map((n) => (
+                  <Fragment key={n}>
+                    <input
+                      type="radio"
+                      id={`star-${n}`}
+                      name="calificacion"
+                      value={n}
+                      checked={calificacion === n}
+                      onChange={() => setCalificacion(n)}
+                      className="sr-only"
+                    />
+                    <label
+                      htmlFor={`star-${n}`}
+                      title={`${n} ${n === 1 ? "estrella" : "estrellas"}`}
+                      aria-label={`${n} ${n === 1 ? "estrella" : "estrellas"}`}
+                    >
+                      ★
+                    </label>
+                  </Fragment>
+                ))}
+              </div>
+              <span className="text-sm text-muted-foreground">
                 {calificacion > 0
                   ? `${calificacion} de 5`
                   : "Toca una estrella"}

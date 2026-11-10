@@ -287,3 +287,182 @@
 .nav-underline[data-active="true"]::after {
   width: 100%;
 }
+
+/* === More uiverse-inspired effects — per page variety === */
+
+/* ====== 3D Tilt Card (for /menu dish cards) ====== */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  perspective: 1000px;
+}
+.tilt-card:hover {
+  transform: rotateX(4deg) rotateY(-4deg) translateY(-4px);
+  box-shadow: -8px 8px 24px rgba(184, 84, 61, 0.25);
+}
+
+/* ====== Sliding Tabs Indicator (for /menu category tabs) ====== */
+.sliding-tabs {
+  position: relative;
+}
+.sliding-tabs-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #B8543D, #D4A574);
+  border-radius: 3px 3px 0 0;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ====== Ripple Button (for /carrito WhatsApp button) ====== */
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-btn .ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(0);
+  animation: ripple-anim 0.6s ease-out;
+  pointer-events: none;
+}
+@keyframes ripple-anim {
+  to { transform: scale(4); opacity: 0; }
+}
+
+/* ====== Animated Star Rating (for /resenas form) ====== */
+.star-rating-input {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  gap: 4px;
+}
+.star-rating-input input {
+  display: none;
+}
+.star-rating-input label {
+  font-size: 2rem;
+  color: #D4A574;
+  cursor: pointer;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+.star-rating-input label:hover,
+.star-rating-input label:hover ~ label,
+.star-rating-input input:checked ~ label {
+  color: #B8543D;
+  transform: scale(1.15);
+}
+.star-rating-input input:checked ~ label {
+  text-shadow: 0 0 12px rgba(184, 84, 61, 0.4);
+}
+
+/* ====== Pulse Map Marker (for /ubicacion) ====== */
+.map-marker-pulse {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #B8543D;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  box-shadow: 0 4px 12px rgba(184, 84, 61, 0.4);
+}
+.map-marker-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #B8543D;
+  animation: marker-pulse 2s ease-out infinite;
+  z-index: -1;
+}
+@keyframes marker-pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ====== Counter Roll (for home stats) ====== */
+.counter-roll {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  animation: counter-roll-in 0.8s ease-out;
+}
+@keyframes counter-roll-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Skeleton Shimmer (for loading states) ====== */
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(245, 247, 242, 0.4) 25%,
+    rgba(212, 165, 116, 0.2) 50%,
+    rgba(245, 247, 242, 0.4) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ====== Quote Bubble (for /resenas testimonials) ====== */
+.quote-bubble {
+  position: relative;
+  padding: 24px 24px 24px 48px;
+}
+.quote-bubble::before {
+  content: '"';
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  font-size: 4rem;
+  line-height: 1;
+  font-family: Georgia, serif;
+  color: #D4A574;
+  opacity: 0.4;
+}
+
+/* ====== Highlight Day Card (for /ubicacion horario) ====== */
+.day-card {
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+}
+.day-card:hover {
+  border-left-color: #B8543D;
+  background: rgba(184, 84, 61, 0.05);
+  padding-left: 16px;
+}
+.day-card.today {
+  border-left-color: #7A8C4C;
+  background: rgba(122, 140, 76, 0.08);
+  font-weight: 600;
+}
+
+/* ====== Image Zoom Frame (for /menu/[id] product image) ====== */
+.zoom-frame {
+  overflow: hidden;
+  border-radius: 12px;
+  position: relative;
+}
+.zoom-frame img,
+.zoom-frame .placeholder {
+  transition: transform 0.5s ease;
+}
+.zoom-frame:hover img,
+.zoom-frame:hover .placeholder {
+  transform: scale(1.08);
+}
+.zoom-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(62, 44, 32, 0.4));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.zoom-frame:hover::after {
+  opacity: 1;
+}

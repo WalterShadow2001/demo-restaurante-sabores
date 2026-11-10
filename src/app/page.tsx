@@ -56,19 +56,19 @@ export default async function HomePage() {
 
               <dl className="mt-10 grid max-w-md grid-cols-3 gap-4 text-center">
                 <div>
-                  <dt className="font-serif text-2xl font-bold text-primary">12</dt>
+                  <dt className="counter-roll font-serif text-2xl font-bold text-primary">12</dt>
                   <dd className="text-xs uppercase tracking-wider text-muted-foreground">
                     Platillos
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-serif text-2xl font-bold text-primary">4.7</dt>
+                  <dt className="counter-roll font-serif text-2xl font-bold text-primary">4.7</dt>
                   <dd className="text-xs uppercase tracking-wider text-muted-foreground">
                     Calificación
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-serif text-2xl font-bold text-primary">100%</dt>
+                  <dt className="counter-roll font-serif text-2xl font-bold text-primary">100%</dt>
                   <dd className="text-xs uppercase tracking-wider text-muted-foreground">
                     Casero
                   </dd>

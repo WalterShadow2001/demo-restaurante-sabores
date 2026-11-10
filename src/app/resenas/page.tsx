@@ -81,8 +81,8 @@ export default async function ResenasPage() {
                   </div>
                   <StarRating value={r.calificacion} size={14} />
                 </div>
-                <p className="text-sm text-foreground/80 text-pretty">
-                  &ldquo;{r.comentario}&rdquo;
+                <p className="quote-bubble text-sm text-foreground/80 text-pretty">
+                  {r.comentario}
                 </p>
               </Card>
             </MotionDiv>
