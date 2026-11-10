@@ -17,6 +17,7 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useCartStore, type CartItem } from "@/lib/cart-store";
 import { formatPrice } from "@/lib/format";
+import { DishThumb, isImageUrl } from "@/components/site/dish-thumb";
 
 interface CartSheetProps {
   open: boolean;
@@ -153,8 +154,12 @@ function CartLine({
       exit={{ opacity: 0, x: -20, height: 0 }}
       className="flex gap-3 rounded-lg border border-border/60 bg-card p-3"
     >
-      <div className="grid size-14 shrink-0 place-items-center rounded-md bg-secondary/30 text-3xl">
-        {item.imagen}
+      <div className="grid size-14 shrink-0 place-items-center overflow-hidden rounded-md bg-secondary/30">
+        {isImageUrl(item.imagen) ? (
+          <DishThumb src={item.imagen} alt={item.nombre} />
+        ) : (
+          <DishThumb src={item.imagen} alt={item.nombre} emojiClassName="text-3xl" />
+        )}
       </div>
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="flex items-start justify-between gap-2">

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { AddToCartButton } from "@/components/site/add-to-cart-button";
+import { DishThumb, isImageUrl } from "@/components/site/dish-thumb";
 import { getPlatilloById, getPlatillosByCategoria } from "@/lib/queries";
 import { formatPrice } from "@/lib/format";
 import { MotionDiv, MotionArticle } from "@/components/site/motion";
@@ -62,8 +63,22 @@ export default async function PlatilloDetallePage({
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <Card className="card-lift zoom-frame relative grid aspect-square place-items-center bg-gradient-to-br from-secondary/30 via-background to-accent/15 p-8 text-center">
-            <span className="placeholder text-[10rem] sm:text-[12rem]">{platillo.imagen}</span>
+          <Card className="card-lift zoom-frame relative aspect-square overflow-hidden bg-gradient-to-br from-secondary/30 via-background to-accent/15 p-0 text-center">
+            {isImageUrl(platillo.imagen) ? (
+              <DishThumb
+                src={platillo.imagen}
+                alt={platillo.nombre}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <div className="grid h-full w-full place-items-center p-8">
+                <DishThumb
+                  src={platillo.imagen}
+                  alt={platillo.nombre}
+                  emojiClassName="placeholder text-[10rem] sm:text-[12rem]"
+                />
+              </div>
+            )}
             {platillo.destacado && (
               <Badge className="badge-pulse absolute left-6 top-6 bg-primary text-primary-foreground">
                 Recomendado de la casa
@@ -160,8 +175,20 @@ export default async function PlatilloDetallePage({
                 href={`/menu/${p.id}`}
                 className="group flex gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-primary/40"
               >
-                <span className="grid size-16 place-items-center rounded-md bg-secondary/20 text-3xl">
-                  {p.imagen}
+                <span className="grid size-16 shrink-0 place-items-center overflow-hidden rounded-md bg-secondary/20">
+                  {isImageUrl(p.imagen) ? (
+                    <DishThumb
+                      src={p.imagen}
+                      alt={p.nombre}
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <DishThumb
+                      src={p.imagen}
+                      alt={p.nombre}
+                      emojiClassName="text-3xl"
+                    />
+                  )}
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="line-clamp-1 font-medium group-hover:text-primary">

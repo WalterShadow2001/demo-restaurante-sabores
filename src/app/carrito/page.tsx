@@ -14,6 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { useCartStore } from "@/lib/cart-store";
 import { formatPrice } from "@/lib/format";
+import { DishThumb, isImageUrl } from "@/components/site/dish-thumb";
 import type { PedidoItem } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -204,8 +205,12 @@ export default function CarritoPage() {
                       exit={{ opacity: 0, x: -10, height: 0 }}
                       className="flex gap-4 p-4"
                     >
-                      <div className="grid size-16 shrink-0 place-items-center rounded-md bg-secondary/25 text-3xl">
-                        {item.imagen}
+                      <div className="grid size-16 shrink-0 place-items-center overflow-hidden rounded-md bg-secondary/25">
+                        {isImageUrl(item.imagen) ? (
+                          <DishThumb src={item.imagen} alt={item.nombre} />
+                        ) : (
+                          <DishThumb src={item.imagen} alt={item.nombre} emojiClassName="text-3xl" />
+                        )}
                       </div>
                       <div className="flex min-w-0 flex-1 flex-col">
                         <div className="flex items-start justify-between gap-3">

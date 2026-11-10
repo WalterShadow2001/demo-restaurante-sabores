@@ -7,6 +7,7 @@ import { DishCard } from "@/components/site/dish-card";
 import { StarRating } from "@/components/site/star-rating";
 import { getFeaturedPlatillos, getApprovedResenas } from "@/lib/queries";
 import { formatDateShort } from "@/lib/format";
+import { HERO_IMAGE_URL } from "@/lib/site-config";
 import { MotionDiv } from "@/components/site/motion";
 
 export const dynamic = "force-dynamic";
@@ -21,7 +22,13 @@ export default async function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden pattern-bg pattern-papel-picado">
-        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/30 via-background to-background" />
+        {/* Background photo with overlay so foreground text stays legible */}
+        <div
+          className="absolute inset-0 -z-10 bg-cover bg-center opacity-30"
+          style={{ backgroundImage: `url(${HERO_IMAGE_URL})` }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/60 to-background" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <MotionDiv

@@ -48,6 +48,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { AdminNav } from "@/components/site/admin-nav";
+import { DishThumb, isImageUrl } from "@/components/site/dish-thumb";
 import { formatPrice } from "@/lib/format";
 import { CATEGORIAS, type Platillo } from "@/lib/types";
 
@@ -258,8 +259,12 @@ export default function AdminPlatillosPage() {
                       >
                         <TableCell>
                           <div className="flex items-center gap-3">
-                            <span className="grid size-9 place-items-center rounded-md bg-secondary/20 text-xl">
-                              {p.imagen}
+                            <span className="grid size-9 shrink-0 place-items-center overflow-hidden rounded-md bg-secondary/20">
+                              {isImageUrl(p.imagen) ? (
+                                <DishThumb src={p.imagen} alt={p.nombre} />
+                              ) : (
+                                <DishThumb src={p.imagen} alt={p.nombre} emojiClassName="text-xl" />
+                              )}
                             </span>
                             <div className="min-w-0">
                               <p className="truncate font-medium">{p.nombre}</p>
@@ -403,10 +408,14 @@ export default function AdminPlatillosPage() {
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <Label htmlFor="imagen">Imagen (emoji) *</Label>
+                  <Label htmlFor="imagen">Imagen (emoji o URL) *</Label>
                   <div className="flex items-center gap-2">
-                    <span className="grid size-10 place-items-center rounded-md border border-border bg-secondary/15 text-2xl">
-                      {form.imagen || "🍽️"}
+                    <span className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-md border border-border bg-secondary/15">
+                      {isImageUrl(form.imagen) ? (
+                        <DishThumb src={form.imagen} alt="Vista previa" />
+                      ) : (
+                        <DishThumb src={form.imagen || "🍽️"} alt="Vista previa" emojiClassName="text-2xl" />
+                      )}
                     </span>
                     <Input
                       id="imagen"
@@ -414,8 +423,7 @@ export default function AdminPlatillosPage() {
                       onChange={(e) =>
                         setForm((f) => ({ ...f, imagen: e.target.value }))
                       }
-                      placeholder="🍽️"
-                      maxLength={4}
+                      placeholder="🍽️ o https://..."
                     />
                   </div>
                 </div>

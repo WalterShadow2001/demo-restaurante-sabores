@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/lib/cart-store";
 import { formatPrice } from "@/lib/format";
+import { DishThumb, isImageUrl } from "@/components/site/dish-thumb";
 import type { Platillo } from "@/lib/types";
 
 interface DishCardProps {
@@ -50,11 +51,21 @@ export function DishCard({ platillo, href, index = 0, tilt = false }: DishCardPr
     >
       <Card className={cn("group relative overflow-hidden border-border/70 bg-card p-0 transition-all hover:border-primary/40 hover:shadow-lg", tilt ? "tilt-card" : "card-lift")}>
         <Link href={linkHref} className="block">
-          {/* Image area: emoji-based */}
+          {/* Image area: real photo when imagen is a URL, emoji otherwise */}
           <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-secondary/30 via-background to-accent/15">
-            <span className="text-7xl transition-transform duration-300 group-hover:scale-110">
-              {platillo.imagen}
-            </span>
+            {isImageUrl(platillo.imagen) ? (
+              <DishThumb
+                src={platillo.imagen}
+                alt={platillo.nombre}
+                className="transition-transform duration-500 group-hover:scale-110"
+              />
+            ) : (
+              <DishThumb
+                src={platillo.imagen}
+                alt={platillo.nombre}
+                emojiClassName="text-7xl transition-transform duration-300 group-hover:scale-110"
+              />
+            )}
             {platillo.destacado && (
               <Badge className="badge-pulse absolute left-3 top-3 gap-1 bg-primary text-primary-foreground">
                 <Star className="size-3" /> Recomendado
