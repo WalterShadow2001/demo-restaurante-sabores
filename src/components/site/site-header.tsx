@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -40,9 +41,14 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group" aria-label="Sabores de Delicias inicio">
-          <span className="grid size-9 place-items-center rounded-full bg-primary text-primary-foreground text-lg font-bold shadow-sm transition-transform group-hover:scale-105">
-            S
-          </span>
+          <Image
+            src="/logo.svg"
+            alt="Sabores de Delicias"
+            width={40}
+            height={40}
+            priority
+            className="transition-transform duration-300 group-hover:rotate-3 group-hover:scale-105"
+          />
           <span className="hidden flex-col leading-tight sm:flex">
             <span className="font-serif text-base font-bold text-foreground">
               Sabores de Delicias
@@ -61,18 +67,13 @@ export function SiteHeader() {
               <Link
                 key={link.href}
                 href={link.href}
+                data-active={active ? "true" : "false"}
                 className={cn(
-                  "relative px-3 py-2 text-sm font-medium transition-colors hover:text-primary",
+                  "nav-underline relative px-3 py-2 text-sm font-medium transition-colors hover:text-primary",
                   active ? "text-primary" : "text-foreground/70"
                 )}
               >
                 {link.label}
-                {active && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-x-2 -bottom-px h-0.5 rounded-full bg-primary"
-                  />
-                )}
               </Link>
             );
           })}
@@ -104,7 +105,7 @@ export function SiteHeader() {
             </AnimatePresence>
           </Button>
 
-          <Button asChild variant="secondary" size="sm" className="hidden sm:inline-flex">
+          <Button asChild variant="secondary" size="sm" className="btn-glow hidden sm:inline-flex">
             <Link href="/menu">Ver menú</Link>
           </Button>
 
@@ -123,7 +124,10 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-[280px] p-0">
               <SheetTitle className="sr-only">Menú de navegación</SheetTitle>
               <div className="flex h-16 items-center justify-between border-b px-4">
-                <span className="font-serif text-lg font-bold">Navegación</span>
+                <Link href="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
+                  <Image src="/logo.svg" alt="Sabores de Delicias" width={34} height={34} />
+                  <span className="font-serif text-lg font-bold">Navegación</span>
+                </Link>
                 <Button
                   variant="ghost"
                   size="icon"

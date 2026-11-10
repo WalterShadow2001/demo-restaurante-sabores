@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
-import { Plus, Pencil, Trash2, Loader2, Star, Search } from "lucide-react";
+import { Plus, Pencil, Trash2, Star, Search } from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -470,9 +470,9 @@ export default function AdminPlatillosPage() {
                 </Button>
                 <Button type="submit" disabled={submitting} className="gap-2">
                   {submitting ? (
-                    <>
-                      <Loader2 className="size-4 animate-spin" /> Guardando...
-                    </>
+                    <span className="flex items-center gap-2">
+                      <span className="loader-plate !size-4 !border-2" /> Guardando...
+                    </span>
                   ) : (
                     <>{editingId ? "Guardar cambios" : "Crear platillo"}</>
                   )}

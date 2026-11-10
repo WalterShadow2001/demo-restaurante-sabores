@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, CheckCircle2 } from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -149,7 +149,7 @@ export default function CarritoPage() {
             Aún no has agregado platillos. Explora nuestro menú y prepara
             tu pedido.
           </p>
-          <Button asChild size="lg" className="mt-6 gap-2">
+          <Button asChild size="lg" className="btn-glow mt-6 gap-2">
             <Link href="/menu">
               Ver el menú <ArrowRight className="size-4" />
             </Link>
@@ -337,14 +337,14 @@ export default function CarritoPage() {
 
             <Button
               size="lg"
-              className="w-full gap-2"
+              className="btn-glow w-full gap-2"
               onClick={handleSubmitPedido}
               disabled={submitting || !mounted}
             >
               {submitting ? (
-                <>
-                  <Loader2 className="size-4 animate-spin" /> Enviando...
-                </>
+                <span className="flex items-center gap-2">
+                  <span className="loader-plate !size-4 !border-2" /> Enviando...
+                </span>
               ) : (
                 <>
                   <CheckCircle2 className="size-4" /> Enviar pedido por WhatsApp

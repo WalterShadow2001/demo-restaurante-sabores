@@ -46,7 +46,7 @@ export function DishCard({ platillo, href, index = 0 }: DishCardProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: Math.min(index * 0.05, 0.3) }}
     >
-      <Card className="group relative overflow-hidden border-border/70 bg-card p-0 transition-all hover:border-primary/40 hover:shadow-lg">
+      <Card className="card-lift group relative overflow-hidden border-border/70 bg-card p-0 transition-all hover:border-primary/40 hover:shadow-lg">
         <Link href={linkHref} className="block">
           {/* Image area: emoji-based */}
           <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-gradient-to-br from-secondary/30 via-background to-accent/15">
@@ -54,7 +54,7 @@ export function DishCard({ platillo, href, index = 0 }: DishCardProps) {
               {platillo.imagen}
             </span>
             {platillo.destacado && (
-              <Badge className="absolute left-3 top-3 gap-1 bg-primary text-primary-foreground">
+              <Badge className="badge-pulse absolute left-3 top-3 gap-1 bg-primary text-primary-foreground">
                 <Star className="size-3" /> Recomendado
               </Badge>
             )}
@@ -111,7 +111,7 @@ export function DishCard({ platillo, href, index = 0 }: DishCardProps) {
               size="sm"
               onClick={handleAdd}
               disabled={!platillo.disponible}
-              className={cn("gap-1")}
+              className={cn("btn-glow gap-1")}
               aria-label={`Agregar ${platillo.nombre} al carrito`}
             >
               <Plus className="size-4" /> Agregar

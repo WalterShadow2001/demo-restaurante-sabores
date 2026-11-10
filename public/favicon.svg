@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="32" height="32" role="img" aria-label="Sabores de Delicias">
+  <title>Sabores de Delicias</title>
+
+  <!-- Background disc (cream) -->
+  <circle cx="100" cy="100" r="96" fill="#FAF7F2"/>
+
+  <!-- Outer ring (terracotta, bold for small sizes) -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#B8543D" stroke-width="12"/>
+
+  <!-- Crossed FORK (tilted -22deg) -->
+  <g transform="rotate(-22 100 100)" fill="#3E2C20">
+    <rect x="87" y="72" width="5" height="40" rx="2.5"/>
+    <rect x="81" y="64" width="17" height="10" rx="3"/>
+    <rect x="82.5" y="40" width="3.5" height="26" rx="1.6"/>
+    <rect x="88" y="36" width="3.5" height="30" rx="1.6"/>
+    <rect x="93.5" y="40" width="3.5" height="26" rx="1.6"/>
+  </g>
+
+  <!-- Crossed KNIFE (tilted +22deg) -->
+  <g transform="rotate(22 100 100)">
+    <rect x="98.5" y="74" width="5" height="38" rx="2.5" fill="#3E2C20"/>
+    <rect x="96.5" y="70" width="9" height="6" rx="2" fill="#D4A574"/>
+    <path d="M96.5 70 L105.5 70 L103 42 Q100 37 97 42 Z"
+          fill="#D4A574" stroke="#3E2C20" stroke-width="1.6" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Plate (terracotta disc) at lower centre -->
+  <circle cx="100" cy="132" r="26" fill="#B8543D"/>
+  <circle cx="100" cy="132" r="20" fill="none" stroke="#D4A574" stroke-width="2.4"/>
+</svg>

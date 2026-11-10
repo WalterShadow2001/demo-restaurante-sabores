@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Lock, Loader2, ArrowLeft, ShieldCheck } from "lucide-react";
+import { Lock, ArrowLeft, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -101,13 +101,13 @@ export default function AdminLoginPage() {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full gap-2"
+                className="btn-glow w-full gap-2"
                 disabled={submitting}
               >
                 {submitting ? (
-                  <>
-                    <Loader2 className="size-4 animate-spin" /> Entrando...
-                  </>
+                  <span className="flex items-center gap-2">
+                    <span className="loader-plate !size-4 !border-2" /> Entrando...
+                  </span>
                 ) : (
                   <>Iniciar sesión</>
                 )}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Clock, MapPin, Phone, Instagram, Facebook } from "lucide-react";
 
 export function SiteFooter() {
@@ -9,9 +10,12 @@ export function SiteFooter() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2">
-              <span className="grid size-10 place-items-center rounded-full bg-primary text-primary-foreground text-lg font-bold">
-                S
-              </span>
+              <Image
+                src="/logo.svg"
+                alt="Sabores de Delicias"
+                width={44}
+                height={44}
+              />
               <div className="flex flex-col leading-tight">
                 <span className="font-serif text-lg font-bold">Sabores de Delicias</span>
                 <span className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">

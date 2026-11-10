@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import { Check, Trash2, Loader2, Filter, Clock } from "lucide-react";
+import { Check, Trash2, Filter, Clock } from "lucide-react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -188,7 +188,7 @@ export default function AdminResenasPage() {
                             disabled={busyId === r.id}
                           >
                             {busyId === r.id ? (
-                              <Loader2 className="size-4 animate-spin" />
+                              <span className="loader-plate !size-4 !border-2" />
                             ) : (
                               <Check className="size-4" />
                             )}

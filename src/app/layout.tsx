@@ -33,6 +33,11 @@ export const metadata: Metadata = {
     "Sabores de Delicias",
   ],
   authors: [{ name: "Sabores de Delicias" }],
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: "Sabores de Delicias",
     description:

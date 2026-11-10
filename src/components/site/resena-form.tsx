@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Star, Send, Loader2 } from "lucide-react";
+import { Star, Send } from "lucide-react";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -141,13 +141,13 @@ export function ResenaForm() {
             <Button
               type="submit"
               size="lg"
-              className="w-full gap-2"
+              className="btn-glow w-full gap-2"
               disabled={submitting}
             >
               {submitting ? (
-                <>
-                  <Loader2 className="size-4 animate-spin" /> Enviando...
-                </>
+                <span className="flex items-center gap-2">
+                  <span className="loader-plate !size-4 !border-2" /> Enviando...
+                </span>
               ) : (
                 <>
                   <Send className="size-4" /> Enviar reseña

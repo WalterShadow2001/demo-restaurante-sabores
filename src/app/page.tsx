@@ -20,7 +20,7 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative overflow-hidden pattern-bg">
+      <section className="relative overflow-hidden pattern-bg pattern-papel-picado">
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-secondary/30 via-background to-background" />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
           <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -34,7 +34,7 @@ export default async function HomePage() {
                 Cocina tradicional mexicana
               </Badge>
               <h1 className="font-serif text-5xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-                Sabores de <span className="text-primary">Delicias</span>
+                Sabores de <span className="gradient-text-warm">Delicias</span>
               </h1>
               <p className="mt-5 max-w-xl text-lg text-muted-foreground text-pretty">
                 Recetas de la abuela, ingredientes frescos del día y mucho
@@ -42,7 +42,7 @@ export default async function HomePage() {
                 mole casero de 23 ingredientes y postres que enamoran.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Button asChild size="lg" className="gap-2">
+                <Button asChild size="lg" className="btn-glow gap-2">
                   <Link href="/menu">
                     Ver el menú <ArrowRight className="size-4" />
                   </Link>
@@ -83,21 +83,21 @@ export default async function HomePage() {
               className="relative mx-auto w-full max-w-md"
             >
               <div className="grid grid-cols-2 gap-3">
-                <Card className="aspect-[3/4] place-items-center bg-gradient-to-br from-primary/15 to-secondary/30 text-7xl">
+                <Card className="card-glass card-lift aspect-[3/4] place-items-center bg-gradient-to-br from-primary/15 to-secondary/30 text-7xl">
                   🌮
                 </Card>
-                <Card className="mt-6 aspect-[3/4] place-items-center bg-gradient-to-br from-secondary/40 to-accent/20 text-7xl">
+                <Card className="card-glass card-lift mt-6 aspect-[3/4] place-items-center bg-gradient-to-br from-secondary/40 to-accent/20 text-7xl">
                   🥑
                 </Card>
-                <Card className="-mt-6 aspect-[3/4] place-items-center bg-gradient-to-br from-accent/30 to-secondary/30 text-7xl">
+                <Card className="card-glass card-lift -mt-6 aspect-[3/4] place-items-center bg-gradient-to-br from-accent/30 to-secondary/30 text-7xl">
                   🍲
                 </Card>
-                <Card className="aspect-[3/4] place-items-center bg-gradient-to-br from-secondary/40 to-primary/15 text-7xl">
+                <Card className="card-glass card-lift aspect-[3/4] place-items-center bg-gradient-to-br from-secondary/40 to-primary/15 text-7xl">
                   🍰
                 </Card>
               </div>
               <div className="absolute -right-3 top-1/2 hidden -translate-y-1/2 rotate-3 sm:block">
-                <Badge className="gap-1 bg-accent text-accent-foreground shadow-md">
+                <Badge className="badge-pulse gap-1 bg-accent text-accent-foreground shadow-md">
                   <Star className="size-3" /> Hecho en casa
                 </Badge>
               </div>
@@ -105,6 +105,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <div className="divider-mexican mx-auto my-8 w-24" />
 
       {/* HORARIO + UBICACIÓN */}
       <section className="border-y border-border bg-secondary/20" aria-labelledby="info-section-title">
@@ -146,6 +148,8 @@ export default async function HomePage() {
         </div>
       </section>
 
+      <div className="divider-mexican mx-auto my-8 w-24" />
+
       {/* FEATURED DISHES */}
       <section aria-labelledby="featured-section-title" className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
@@ -176,6 +180,8 @@ export default async function HomePage() {
           </div>
         )}
       </section>
+
+      <div className="divider-mexican mx-auto my-8 w-24" />
 
       {/* REVIEWS */}
       {resenas.length > 0 && (
@@ -208,7 +214,7 @@ export default async function HomePage() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                 >
-                  <Card className="flex h-full flex-col gap-3 p-5">
+                  <Card className="card-lift flex h-full flex-col gap-3 p-5">
                     <StarRating value={r.calificacion} size={18} />
                     <p className="text-sm text-foreground/80 text-pretty">
                       &ldquo;{r.comentario}&rdquo;
@@ -244,7 +250,7 @@ export default async function HomePage() {
               esperamos en Delicias, Chihuahua.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <Button asChild size="lg" variant="secondary" className="gap-2">
+              <Button asChild size="lg" variant="secondary" className="btn-glow gap-2">
                 <Link href="/menu">
                   Explorar el menú <ArrowRight className="size-4" />
                 </Link>

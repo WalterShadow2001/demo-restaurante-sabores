@@ -69,7 +69,7 @@ export function AddToCartButton({ platillo }: AddToCartProps) {
       >
         <Button
           size="lg"
-          className="w-full gap-2 sm:w-auto"
+          className="btn-glow w-full gap-2 sm:w-auto"
           onClick={handleAdd}
           disabled={!platillo.disponible}
         >

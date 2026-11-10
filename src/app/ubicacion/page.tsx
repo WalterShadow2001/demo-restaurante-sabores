@@ -157,7 +157,7 @@ export default function UbicacionPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
           >
-            <Card className="flex h-full flex-col gap-2 p-5">
+            <Card className="card-lift flex h-full flex-col gap-2 p-5">
               <div className="grid size-10 place-items-center rounded-full bg-primary/10 text-primary">
                 {item.icon}
               </div>
@@ -171,7 +171,7 @@ export default function UbicacionPage() {
       </div>
 
       <div className="mt-10 text-center">
-        <Button asChild size="lg" className="gap-2">
+        <Button asChild size="lg" className="btn-glow gap-2">
           <Link href="/menu">Ver el menú completo</Link>
         </Button>
       </div>

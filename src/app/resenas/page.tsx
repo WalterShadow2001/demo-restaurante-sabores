@@ -66,7 +66,7 @@ export default async function ResenasPage() {
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.35, delay: Math.min(i * 0.05, 0.3) }}
             >
-              <Card className="flex h-full flex-col gap-2 p-5">
+              <Card className="card-lift flex h-full flex-col gap-2 p-5">
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
                     <div className="grid size-10 place-items-center rounded-full bg-primary/10 font-serif text-base font-bold text-primary">
